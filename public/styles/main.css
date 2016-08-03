@@ -1,0 +1,16 @@
+html {
+  background-image: url('/images/ship.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+.content {
+  text-align: center;
+  color: white;
+  background: transparent;
+}
+
+li {
+  list-style: none;
+}
