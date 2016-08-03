@@ -11,6 +11,18 @@ html {
   background: transparent;
 }
 
+.align-left {
+  text-align: left;
+  margin-top: 4em;
+}
+
 li {
   list-style: none;
+}
+
+.e404 {
+  background-image: url('/images/chuckNorris404.jpg');
+  width: 50%;
+  height: 50%;
+  margin-top: 10em;
 }

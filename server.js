@@ -1,6 +1,7 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
 var logger     = require('morgan');
+var fs         = require('fs');
 
 var app = express();
 
@@ -15,10 +16,20 @@ app.get('/', function(req, res) {
   res.sendFile('index.html', { root: './public/html'});
 })
 
-app.get('/:name', function(req, res) {
-  var name = req.params.name;
-  res.sendFile(`${name}.html`, { root: './public/html'});
+app.get('/:name', function(req, res, next) {
+    var name = req.params.name;
+    fs.access(`./public/html/${name}.html`, function(err) {
+      if (!err) {
+        return res.sendFile(`${name}.html`, { root: './public/html'})
+      } else {
+        return next();
+      }
+    })
 })
+
+app.use(function(req, res, next) {
+  res.status(404).sendFile('404.html', { root: './public/html' });
+});
 
 // Listener //
 var port = process.env.PORT || 8080;
